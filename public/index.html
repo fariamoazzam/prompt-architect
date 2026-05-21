@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Prompt Architect</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <div class="container">
+    <header>
+      <h1>Prompt Architect</h1>
+      <p>Describe what you want to build — AI fills the gaps and writes your perfect prompt.</p>
+    </header>
+
+    <!-- Step indicator -->
+    <div class="steps">
+      <div class="step active" id="step1-indicator">
+        <div class="step-num">1</div>
+        <span>Describe</span>
+      </div>
+      <div class="step-line"></div>
+      <div class="step" id="step2-indicator">
+        <div class="step-num">2</div>
+        <span>Fill gaps</span>
+      </div>
+      <div class="step-line"></div>
+      <div class="step" id="step3-indicator">
+        <div class="step-num">3</div>
+        <span>Your prompt</span>
+      </div>
+    </div>
+
+    <!-- Phase 1: Describe your goal -->
+    <div id="phase1">
+      <div class="card">
+        <label class="field-label">What do you want to build or accomplish?</label>
+        <p class="field-hint">Be as vague or detailed as you like — the AI will find what's missing.</p>
+        <textarea id="goal" rows="5" placeholder="e.g. I want to build a chatbot that helps students revise for exams by asking them questions about their notes..."></textarea>
+      </div>
+
+      <div class="card">
+        <label class="field-label">Target AI model</label>
+        <div class="chips" id="modelChips">
+          <div class="chip selected" data-single="false">Claude</div>
+          <div class="chip" data-single="false">GPT-4o</div>
+          <div class="chip" data-single="false">Gemini</div>
+          <div class="chip" data-single="false">Any model</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <label class="field-label">What should the AI output?</label>
+        <div class="chips" id="formatChips">
+          <div class="chip selected" data-single="true">Code</div>
+          <div class="chip" data-single="true">Written content</div>
+          <div class="chip" data-single="true">Analysis</div>
+          <div class="chip" data-single="true">Step-by-step plan</div>
+          <div class="chip" data-single="true">JSON / structured data</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <label class="field-label">Complexity</label>
+        <div class="chips" id="complexChips">
+          <div class="chip" data-single="true">Simple one-shot</div>
+          <div class="chip selected" data-single="true">Multi-step task</div>
+          <div class="chip" data-single="true">Full system / agent</div>
+        </div>
+      </div>
+
+      <button class="btn-primary" id="analyzeBtn" onclick="analyzeGaps()">
+        Identify gaps →
+      </button>
+    </div>
+
+    <!-- Phase 2: Fill the gaps -->
+    <div id="phase2" class="hidden">
+      <div class="card">
+        <label class="field-label">Gaps detected in your description</label>
+        <p class="field-hint">Answer what you can. Leave blank to skip — the AI will mark those as placeholders.</p>
+        <div id="gapsList"></div>
+      </div>
+      <div class="btn-row">
+        <button class="btn-ghost" onclick="goBack()">← Back</button>
+        <button class="btn-primary" id="buildBtn" onclick="buildPrompt()">Build my prompt →</button>
+      </div>
+    </div>
+
+    <!-- Phase 3: The generated prompt -->
+    <div id="phase3" class="hidden">
+      <div class="card">
+        <div class="output-header">
+          <label class="field-label" style="margin:0">Your engineered prompt</label>
+          <div class="badges">
+            <span class="badge badge-purple">XML structured</span>
+            <span class="badge badge-green" id="modelBadge">Claude optimised</span>
+          </div>
+        </div>
+        <div class="output-box" id="outputBox"></div>
+        <div class="btn-row" style="margin-top:1rem">
+          <button class="btn-primary" onclick="copyPrompt()">Copy prompt</button>
+          <button class="btn-ghost" onclick="resetAll()">Start over</button>
+          <span id="copiedMsg" class="copied-msg hidden">Copied!</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <label class="field-label">What to do next</label>
+        <div class="next-grid">
+          <div class="next-card">
+            <div class="next-icon">📋</div>
+            <div class="next-title">Paste into Claude</div>
+            <div class="next-desc">Use this as your system prompt in any Claude project</div>
+          </div>
+          <div class="next-card">
+            <div class="next-icon">✏️</div>
+            <div class="next-title">Fill placeholders</div>
+            <div class="next-desc">Replace every [PLACEHOLDER] tag with your real context</div>
+          </div>
+          <div class="next-card">
+            <div class="next-icon">🔄</div>
+            <div class="next-title">Iterate</div>
+            <div class="next-desc">Run it, see the output, come back and refine</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
