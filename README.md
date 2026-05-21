@@ -25,13 +25,13 @@ Most people struggle to write good prompts. They're either too vague ("build me 
 ## 📸 Screenshots
 
 ### Step 1 — Describe your goal
-![Step 1](./public/screenshots/step1.png)
+![Step 1](./public/screenshots/step1.webp)
 
 ### Step 2 — AI detects missing context
-![Step 2](./public/screenshots/step2.png)
+![Step 2](./public/screenshots/step2.webp)
 
 ### Step 3 — Your engineered XML prompt
-![Step 3](./public/screenshots/step3.png)
+![Step 3](./public/screenshots/step3.webp)
 
 ---
 
